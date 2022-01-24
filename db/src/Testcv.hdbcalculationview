@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="Testcv" applyPrivilegeType="NONE" dataCategory="DIMENSION" dimensionType="STANDARD" schemaVersion="3.0" outputViewType="Projection" cacheInvalidationPeriod="NONE" enforceSqlExecution="true">
+<descriptions defaultDescription="Testcv"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="SURESH_DB_MASTER_ADDRESS">
+    <resourceUri>SURESH_DB_MASTER_ADDRESS</resourceUri>
+  </DataSource>
+</dataSources>
+<calculationViews/>
+
+<logicalModel id="SURESH_DB_MASTER_ADDRESS">
+  <attributes>
+    <attribute id="NODE_KEY" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="NODE_KEY"/>
+      <keyMapping columnObjectName="SURESH_DB_MASTER_ADDRESS" columnName="NODE_KEY"/>
+    </attribute>
+    <attribute id="CITY" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="CITY"/>
+      <keyMapping columnObjectName="SURESH_DB_MASTER_ADDRESS" columnName="CITY"/>
+    </attribute>
+    <attribute id="POSTAL_CODE" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="POSTAL_CODE"/>
+      <keyMapping columnObjectName="SURESH_DB_MASTER_ADDRESS" columnName="POSTAL_CODE"/>
+    </attribute>
+    <attribute id="STREET" order="4" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="STREET"/>
+      <keyMapping columnObjectName="SURESH_DB_MASTER_ADDRESS" columnName="STREET"/>
+    </attribute>
+    <attribute id="BUILDING" order="5" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="BUILDING"/>
+      <keyMapping columnObjectName="SURESH_DB_MASTER_ADDRESS" columnName="BUILDING"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures/>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="40" y="85"/>
+    </shape>
+    
+  </shapes>
+</layout>
+</Calculation:scenario>

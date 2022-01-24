@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="CV_PO" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" outputViewType="Aggregation" cacheInvalidationPeriod="NONE" enforceSqlExecution="true">
+<descriptions defaultDescription="CV_PO"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="SURESH_DB_TRANSACTION_PURCHASEORDER">
+    <resourceUri>SURESH_DB_TRANSACTION_PURCHASEORDER</resourceUri>
+  </DataSource>
+  <DataSource id="SURESH_DB_TRANSACTION_POITEMS">
+    <resourceUri>SURESH_DB_TRANSACTION_POITEMS</resourceUri>
+  </DataSource>
+</dataSources>
+<calculationViews>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_1" cardinality="C1_N" joinType="referential">
+    <viewAttributes>
+      <viewAttribute id="ID"/>
+      <viewAttribute id="PO_ID" aggregationType="sum"/>
+      <viewAttribute id="PARTNER_GUID_NODE_KEY"/>
+      <viewAttribute id="CURRENCY_CODE"/>
+      <viewAttribute id="GROSS_AMOUNT" aggregationType="sum"/>
+      <viewAttribute id="NET_AMOUNT" aggregationType="sum"/>
+      <viewAttribute id="TAX_AMOUNT" aggregationType="sum"/>
+      <viewAttribute id="PO_ITEM_POS" aggregationType="sum"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="SURESH_DB_TRANSACTION_PURCHASEORDER">
+      <mapping xsi:type="Calculation:AttributeMapping" target="ID" source="ID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PO_ID" source="PO_ID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PARTNER_GUID_NODE_KEY" source="PARTNER_GUID_NODE_KEY"/>
+    </input>
+    <input node="SURESH_DB_TRANSACTION_POITEMS">
+      <mapping xsi:type="Calculation:AttributeMapping" target="CURRENCY_CODE" source="CURRENCY_CODE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="GROSS_AMOUNT" source="GROSS_AMOUNT"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="NET_AMOUNT" source="NET_AMOUNT"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="TAX_AMOUNT" source="TAX_AMOUNT"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PO_ITEM_POS" source="PO_ITEM_POS"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ID" source="PARENT_KEY_ID"/>
+    </input>
+    <joinAttribute name="ID"/>
+  </calculationView>
+</calculationViews>
+
+<logicalModel id="Join_1">
+  <attributes>
+    <attribute id="ID" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ID"/>
+      <keyMapping columnObjectName="Join_1" columnName="ID"/>
+    </attribute>
+    <attribute id="PO_ID" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="PO_ID"/>
+      <keyMapping columnObjectName="Join_1" columnName="PO_ID"/>
+    </attribute>
+    <attribute id="PARTNER_GUID_NODE_KEY" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="PARTNER_GUID_NODE_KEY"/>
+      <keyMapping columnObjectName="Join_1" columnName="PARTNER_GUID_NODE_KEY"/>
+    </attribute>
+    <attribute id="PO_ITEM_POS" order="4" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="PO_ITEM_POS"/>
+      <keyMapping columnObjectName="Join_1" columnName="PO_ITEM_POS"/>
+    </attribute>
+    <attribute id="CURRENCY_CODE" order="5" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="CURRENCY_CODE"/>
+      <keyMapping columnObjectName="Join_1" columnName="CURRENCY_CODE"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures>
+    <measure id="GROSS_AMOUNT" order="6" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="GROSS_AMOUNT"/>
+      <measureMapping columnObjectName="Join_1" columnName="GROSS_AMOUNT"/>
+    </measure>
+    <measure id="NET_AMOUNT" order="7" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="NET_AMOUNT"/>
+      <measureMapping columnObjectName="Join_1" columnName="NET_AMOUNT"/>
+    </measure>
+    <measure id="TAX_AMOUNT" order="8" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="TAX_AMOUNT"/>
+      <measureMapping columnObjectName="Join_1" columnName="TAX_AMOUNT"/>
+    </measure>
+  </baseMeasures>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+  <localDimensions/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="40" y="85"/>
+    </shape>
+    
+  
+    <shape expanded="true" modelObjectName="Join_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="94" y="184"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape modelObjectName="SURESH_DB_TRANSACTION_PURCHASEORDER" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="54" y="24"/>
+      <rectangleSize width="349.369140625"/>
+    </shape>
+    <shape modelObjectName="SURESH_DB_TRANSACTION_POITEMS" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="473" y="24"/>
+      <rectangleSize width="292.697265625"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>
