@@ -1,9 +1,10 @@
-using { suresh.db.master, suresh.db.transaction, CV_PURCHASE } from '../db/demomodel';
+using { suresh.db.master, suresh.db.transaction, CV_PURCHASE, CV_PURCHASE_ORD } from '../db/demomodel';
 
 
 
 service CatalogService@(path:'/CatalogService') {
-
+   //@readonly
+   @Capabilities : { Insertable,Updatable:false,Deletable }
     entity EmployeeSet as projection on master.employees;
 
     entity AddressSet as projection on master.address;
@@ -26,6 +27,7 @@ service CatalogService@(path:'/CatalogService') {
         PRODUCT_GUID: redirected to ProductSet
     }
 
-    entity PURCHASE as projection on CV_PURCHASE;
+    entity PurchaseOrder as projection on CV_PURCHASE;
+    entity PurchaseOrderpercustomer as projection on CV_PURCHASE_ORD;
 
 }
