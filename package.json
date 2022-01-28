@@ -11,10 +11,15 @@
         "hdb": "^0.18.3"
     },
     "devDependencies": {
-        "@sap/hdi-deploy": "^4.2.3"
+        "@sap/eslint-plugin-ui5-jsdocs": "^2.0.5",
+        "@sap/hdi-deploy": "^4.2.3",
+        "@sap/ux-specification": "^1.96.2",
+        "@sapui5/ts-types": "^1.92.2",
+        "eslint": "^7.32.0"
     },
     "scripts": {
-        "start": "cds run"
+        "start": "cds run",
+        "undeploy": "cf undeploy pocapapp --delete-services --delete-service-keys"
     },
     "eslintConfig": {
         "extends": "eslint:recommended",

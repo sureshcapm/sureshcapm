@@ -20,6 +20,9 @@ service CatalogService@(path:'/CatalogService') {
         Items: redirected to POItems
     }
 
+  annotate POs with {
+      PO_ID @title : '{i18n>PO_ID}'
+  }
     entity POItems @( title : '{i18n>poItems}' )
     as projection on transaction.poitems{
         *,
