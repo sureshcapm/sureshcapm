@@ -111,11 +111,11 @@
     </shape>
     <shape modelObjectName="CV_PO" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
       <upperLeftCorner x="20" y="30"/>
-      <rectangleSize width="237.19091796875"/>
+      <rectangleSize width="237"/>
     </shape>
     <shape modelObjectName="CV_Bp" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
       <upperLeftCorner x="320" y="30"/>
-      <rectangleSize width="178.90380859375"/>
+      <rectangleSize width="178"/>
     </shape>
     <shape modelObjectName="Join_1" modelObjectNameSpace="StarJoinViewNodeInput" modelObjectType="repository">
       <upperLeftCorner x="20" y="30"/>

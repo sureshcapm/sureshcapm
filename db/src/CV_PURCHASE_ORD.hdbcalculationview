@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="CV_PURCHASE_ORD" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" outputViewType="Aggregation" cacheInvalidationPeriod="NONE" enforceSqlExecution="true">
+<descriptions defaultDescription="CV_PURCHASE_ORD"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="SURESH_DB_TRANSACTION_PURCHASEORDER">
+    <resourceUri>SURESH_DB_TRANSACTION_PURCHASEORDER</resourceUri>
+  </DataSource>
+  <DataSource id="getSuppliers" type="TABLE_FUNCTION">
+    <resourceUri>getSuppliers</resourceUri>
+  </DataSource>
+</dataSources>
+<calculationViews>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_1">
+    <viewAttributes>
+      <viewAttribute id="CURRENCY_CODE"/>
+      <viewAttribute id="GROSS_AMOUNT"/>
+      <viewAttribute id="NET_AMOUNT"/>
+      <viewAttribute id="TAX_AMOUNT"/>
+      <viewAttribute id="PO_ID"/>
+      <viewAttribute id="PARTNER_GUID_NODE_KEY"/>
+      <viewAttribute id="LIFECYCLE_STATUS"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="SURESH_DB_TRANSACTION_PURCHASEORDER"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_2">
+    <viewAttributes>
+      <viewAttribute id="CITY"/>
+      <viewAttribute id="COMPANY"/>
+      <viewAttribute id="SUPPLIER_ID"/>
+      <viewAttribute id="COUNTRY"/>
+      <viewAttribute id="EMAIL"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="getSuppliers"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_1" cardinality="C1_1" joinType="inner">
+    <viewAttributes>
+      <viewAttribute id="CURRENCY_CODE"/>
+      <viewAttribute id="GROSS_AMOUNT" aggregationType="sum"/>
+      <viewAttribute id="NET_AMOUNT" aggregationType="sum"/>
+      <viewAttribute id="TAX_AMOUNT" aggregationType="sum"/>
+      <viewAttribute id="PO_ID" aggregationType="sum"/>
+      <viewAttribute id="PARTNER_GUID_NODE_KEY"/>
+      <viewAttribute id="LIFECYCLE_STATUS"/>
+      <viewAttribute id="CITY"/>
+      <viewAttribute id="COMPANY"/>
+      <viewAttribute id="SUPPLIER_ID"/>
+      <viewAttribute id="COUNTRY"/>
+      <viewAttribute id="EMAIL"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="Projection_1">
+      <mapping xsi:type="Calculation:AttributeMapping" target="CURRENCY_CODE" source="CURRENCY_CODE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="GROSS_AMOUNT" source="GROSS_AMOUNT"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="NET_AMOUNT" source="NET_AMOUNT"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="TAX_AMOUNT" source="TAX_AMOUNT"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PO_ID" source="PO_ID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PARTNER_GUID_NODE_KEY" source="PARTNER_GUID_NODE_KEY"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="LIFECYCLE_STATUS" source="LIFECYCLE_STATUS"/>
+    </input>
+    <input node="Projection_2">
+      <mapping xsi:type="Calculation:AttributeMapping" target="CITY" source="CITY"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="COMPANY" source="COMPANY"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SUPPLIER_ID" source="SUPPLIER_ID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="COUNTRY" source="COUNTRY"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="EMAIL" source="EMAIL"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PARTNER_GUID_NODE_KEY" source="SUPPLIER_ID"/>
+    </input>
+    <joinAttribute name="PARTNER_GUID_NODE_KEY"/>
+  </calculationView>
+</calculationViews>
+
+<logicalModel id="Join_1">
+  <attributes>
+    <attribute id="PO_ID" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="PO_ID"/>
+      <keyMapping columnObjectName="Join_1" columnName="PO_ID"/>
+    </attribute>
+    <attribute id="PARTNER_GUID_NODE_KEY" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="PARTNER_GUID_NODE_KEY"/>
+      <keyMapping columnObjectName="Join_1" columnName="PARTNER_GUID_NODE_KEY"/>
+    </attribute>
+    <attribute id="LIFECYCLE_STATUS" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="LIFECYCLE_STATUS"/>
+      <keyMapping columnObjectName="Join_1" columnName="LIFECYCLE_STATUS"/>
+    </attribute>
+    <attribute id="CITY" order="4" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="CITY"/>
+      <keyMapping columnObjectName="Join_1" columnName="CITY"/>
+    </attribute>
+    <attribute id="COMPANY" order="5" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="COMPANY"/>
+      <keyMapping columnObjectName="Join_1" columnName="COMPANY"/>
+    </attribute>
+    <attribute id="SUPPLIER_ID" order="6" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="SUPPLIER_ID"/>
+      <keyMapping columnObjectName="Join_1" columnName="SUPPLIER_ID"/>
+    </attribute>
+    <attribute id="COUNTRY" order="7" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="COUNTRY"/>
+      <keyMapping columnObjectName="Join_1" columnName="COUNTRY"/>
+    </attribute>
+    <attribute id="EMAIL" order="8" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="EMAIL"/>
+      <keyMapping columnObjectName="Join_1" columnName="EMAIL"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures>
+    <measure id="GROSS_AMOUNT" order="9" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="GROSS_AMOUNT"/>
+      <measureMapping columnObjectName="Join_1" columnName="GROSS_AMOUNT"/>
+    </measure>
+    <measure id="NET_AMOUNT" order="10" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="NET_AMOUNT"/>
+      <measureMapping columnObjectName="Join_1" columnName="NET_AMOUNT"/>
+    </measure>
+    <measure id="TAX_AMOUNT" order="11" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="TAX_AMOUNT"/>
+      <measureMapping columnObjectName="Join_1" columnName="TAX_AMOUNT"/>
+    </measure>
+  </baseMeasures>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+  <localDimensions/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="40" y="85"/>
+    </shape>
+    
+  
+    <shape expanded="true" modelObjectName="Projection_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="-34" y="252"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Projection_2" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="225" y="247"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Join_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="107" y="172"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape modelObjectName="Projection_1" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="237.19091796875"/>
+    </shape>
+    <shape modelObjectName="Projection_2" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="157.52685546875"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

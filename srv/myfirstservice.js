@@ -1,5 +1,5 @@
 const myfirstservice = function(srv) {
-    srv.on('hello', (req) => {
+    srv.on('Update', (req) => {
         return  "Hello " + req.data.to + "!";
     });
 }

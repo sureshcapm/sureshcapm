@@ -1,0 +1,32 @@
+FUNCTION "get_full_name"(
+                im_firstname nvarchar(40),
+                im_lastname nvarchar(40),
+                im_middlename nvarchar(40),
+                im_employeeid nvarchar(40) default ''
+ )
+    RETURNS ex_fullname nvarchar(256)
+    LANGUAGE SQLSCRIPT
+    SQL SECURITY INVOKER AS
+BEGIN
+    /*****************************
+        Write your function logic
+    ****************************/
+    declare lv_lastname varchar(40);
+
+    IF :im_lastname IS NULL then
+        lv_lastname = '';
+    else
+        lv_lastname := :im_lastname;
+    END IF;
+    
+    if :im_middlename is null then
+        ex_fullname = :lv_lastname || ', ' || :im_firstname;
+    ELSE
+        ex_fullname = :lv_lastname || ', ' || :im_firstname || ', ' || :im_middlename;
+    end if;
+
+    if :im_employeeid <> '' then
+        ex_fullname = :ex_fullname || '(' || :im_employeeid || ')';
+    end if;
+
+END;

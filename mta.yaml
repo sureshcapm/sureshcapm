@@ -45,7 +45,6 @@ modules:
     # 'hana' and 'xsuaa' resources extracted from CAP configuration
     - name: pocapapp-db
 
-
 resources:
  # services extracted from CAP configuration
  # 'service-plan' can be configured via 'cds.requires.<name>.vcap.plan'

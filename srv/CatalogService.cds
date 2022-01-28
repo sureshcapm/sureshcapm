@@ -1,4 +1,5 @@
-using { suresh.db.master, suresh.db.transaction } from '../db/demomodel';
+using { suresh.db.master, suresh.db.transaction, CV_PURCHASE } from '../db/demomodel';
+
 
 
 service CatalogService@(path:'/CatalogService') {
@@ -24,5 +25,7 @@ service CatalogService@(path:'/CatalogService') {
         PARENT_KEY: redirected to POs,
         PRODUCT_GUID: redirected to ProductSet
     }
+
+    entity PURCHASE as projection on CV_PURCHASE;
 
 }
